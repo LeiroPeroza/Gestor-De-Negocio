@@ -55,5 +55,7 @@ Este es un proyecto personal de práctica. Cosas que ya identifiqué y que está
 - Diseño de un flujo de datos consistente entre estado en memoria, interfaz y almacenamiento.
 - Validar antes de mutar: en las transacciones, primero se valida todo el carrito y solo después se aplican los cambios, para evitar que los datos queden en un estado inconsistente si algo falla a mitad de camino.
 
+---
+
 Proyecto personal de aprendizaje — Estudiante de Ingeniería Informática.
 
