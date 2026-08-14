@@ -1,4 +1,3 @@
-# Gestor-De-Negocio
 # Gestor de Negocio
 
 Sistema de gestión de inventario y ventas para pequeños negocios, construido en JavaScript vanilla. Nació de la necesidad real de organizar el inventario de una bodega y de la idea de aplicar en un caso concreto lo aprendido sobre consumo de APIs y persistencia con `localStorage`.
