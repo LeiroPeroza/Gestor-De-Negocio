@@ -212,7 +212,7 @@ function renderizarHistorial() {
 }
 
 function renderizarDashboard() {
-  
+
     let totalVentasUSD = 0;
     for (let i = 0; i < historialTransacciones.length; i++) {
         if (historialTransacciones[i].tipo === "venta") {
@@ -227,7 +227,7 @@ function renderizarDashboard() {
 
     let htmlAlertas = "";
     let hayAlertas = false;
-    
+
     if (miNegocio) {
         for (let i = 0; i < miNegocio.listaProductos.length; i++) {
             let prod = miNegocio.listaProductos[i];
@@ -237,7 +237,7 @@ function renderizarDashboard() {
             }
         }
     }
-    
+
     if (!hayAlertas) {
         htmlAlertas = "<li style='color: var(--color-exito);'>✅ Todo el stock está bien</li>";
     }
@@ -392,7 +392,7 @@ function inicializarApp() {
     }
 
     // Ticket
-    
+
     if (btnAbrirTicket) {
         btnAbrirTicket.addEventListener("click", () => {
             mostrarPantalla(pantallaTicket, "Procesar Nueva Transacción");
