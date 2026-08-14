@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inventario</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+
+<body>
+
+    <!--CONTENEDOR PRINCIPAL-->
+
+    <div class="contenedor-principal">
+
+        <!--BARRA LATERAL-->
+
+        <aside class="barra-lateral">
+            <div class="logo-contenedor">
+                <h2 class="logo-texto">Mi Negocio</h2>
+            </div>
+
+            <nav class="navegacion">
+                <ul class="lista-menu">
+                    <li class="item-menu"><a href="#" id="btn-menu-panel" class="enlace-menu">Panel Principal</a>
+                    </li>
+                    <li class="item-menu"><a href="#" id="btn-menu-inventario" class="enlace-menu activo">
+                            Inventario</a></li>
+                    <li class="item-menu"><a href="#" id="btn-menu-historial" class="enlace-menu">Transacciones</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!--ÁREA PRINCIPAL DE CONTENIDO-->
+
+        <main class="contenido-principal">
+
+            <!--HEADER-->
+
+            <header class="cabecera-superior">
+                <div class="titulo-seccion">
+                    <h1 id="titulo-cabecera">Control de Inventario</h1>
+                </div>
+                <div class="indicador-api">
+                    <span class="tasa-bcv">Tasa BCV: Cargando...</span>
+                </div>
+            </header>
+
+
+            <!-- PANTALLA 1: PANEL PRINCIPAL -->
+
+            <section id="pantalla-panel" class="area-trabajo" style="display: none;">
+                <div class="cabecera-ticket" style="margin-bottom: 20px;">
+                    <h2>Resumen del Negocio</h2>
+                </div>
+                <div class="dashboard-grid">
+
+                    <!-- Tarjeta 1: Ventas -->
+
+                    <div class="card-dashboard">
+                        <h3>💰 Total Ventas (USD)</h3>
+                        <p id="dash-ventas">$0.00</p>
+                    </div>
+
+                    <!-- Tarjeta 2: Stock -->
+
+                    <div class="card-dashboard">
+                        <h3>📦 Productos en Stock</h3>
+                        <p id="dash-stock">0</p>
+                    </div>
+                    <!-- Tarjeta 3: Alertas -->
+
+                    <div class="card-dashboard card-alerta">
+                        <h3>⚠️ Alerta de Stock Bajo</h3>
+                        <ul id="dash-alertas">
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- INVENTARIO -->
+
+            <section id="pantalla-inventario" class="area-trabajo">
+                <div class="tarjeta-ticket">
+                    <div class="cabecera-ticket">
+                        <h2>Catálogo de Inventario</h2>
+                        <button id="btn-nuevo-producto" class="btn btn-exito">➕ Nuevo Producto</button>
+                    </div>
+
+                    <div class="contenedor-tabla">
+                        <table class="tabla-articulos">
+                            <thead>
+                                <tr>
+                                    <th>Artículo</th>
+                                    <th>Stock Disponible</th>
+                                    <th>Precio Unit. (USD)</th>
+                                    <th>Precio Unit. (Bs)</th>
+                                    <th>Valor Total (USD)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-tabla-inventario">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="resumen-totales">
+                        <div class="caja-totales">
+                            <div class="fila-total">
+                                <span>Total Artículos Diferentes:</span>
+                                <strong id="lbl-inv-tipos">0</strong>
+                            </div>
+                            <div class="fila-total total-final">
+                                <span>VALOR DE ACTIVOS</span>
+                                <strong id="lbl-inv-activos">0.00$</strong>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <!-- PANTALLA 4: HISTORIAL DE TRANSACCIONES -->
+
+            <section id="pantalla-historial" class="area-trabajo" style="display: none;">
+                <div class="tarjeta-ticket">
+                    <div class="cabecera-ticket">
+                        <h2>Historial de Movimientos</h2>
+                        <button id="btn-abrir-ticket" class="btn btn-exito">➕ Nueva Transacción</button>
+                    </div>
+                    <div class="contenedor-tabla">
+                        <table class="tabla-articulos">
+                            <thead>
+                                <tr>
+                                    <th>Ticket #</th>
+                                    <th>Fecha</th>
+                                    <th>Tipo</th>
+                                    <th>Total (USD)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-tabla-historial">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PANTALLA DE TICKET-->
+
+            <section id="pantalla-ticket" class="area-trabajo" style="display: none;">
+
+                <div class="tarjeta-ticket">
+
+                    <!--CABECERA DEL TICKET-->
+
+                    <div class="cabecera-ticket">
+                        <h2 class="numero-ticket">Nueva Transacción (En Desarrollo)</h2>
+                        <div class="grupo-botones">
+                            <button id="btn-cancelar-ticket" class="btn btn-peligro">Cancelar</button>
+                            <button id="btn-procesar-ticket" class="btn btn-exito">Procesar</button>
+                        </div>
+                    </div>
+
+                    <!-- AGREGAR PRODUCTO A LA FACTURA -->
+
+                    <div class="info-transaccion caja-agregar-producto">
+                        <div class="campo-formulario">
+                            <label>Seleccionar Artículo:</label>
+                            <select id="select-producto-ticket" class="input-select">
+                                <option value="">-- Seleccione un producto --</option>
+                            </select>
+                        </div>
+                        <div class="campo-formulario">
+                            <label>Cantidad a vender:</label>
+                            <input type="number" id="input-cantidad-ticket" min="1" step="1" value="1">
+                        </div>
+                        <div class="campo-formulario alinear-abajo">
+                            <button id="btn-agregar-al-ticket" class="btn btn-exito btn-agregar">➕ Agregar a la
+                                lista</button>
+                        </div>
+                    </div>
+
+                    <!--INFORMACION GENERAL DE LA TRANSACCION-->
+
+                    <div class="info-transaccion">
+
+                        <!--INFORMACION GENERAL DE LA TRANSACCION-->
+
+                        <div class="info-transaccion">
+
+                            <!--SELECTOR DE TIPO DE OPERACIÓN -->
+
+                            <div class="campo-formulario">
+                                <label>Tipo de Operación:</label>
+                                <select id="select-tipo-transaccion" class="input-select">
+                                    <option value="venta">VENTA (Salida de Stock)</option>
+                                    <option value="compra">COMPRA (Entrada de Stock)</option>
+                                </select>
+                            </div>
+
+                            <div class="campo-formulario">
+                                <label>Cliente / Proveedor:</label>
+                                <input type="text" id="input-cliente" value="Mostrador">
+                            </div>
+                            <div class="campo-formulario">
+                                <label>Usuario:</label>
+                                <input type="text" value="Leiro" readonly>
+                            </div>
+                            <div class="campo-formulario">
+                                <label>Fecha:</label>
+                                <input type="date" id="fecha-actual">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--TABLA DE PRODUCTOS DEL TICKET-->
+
+                    <div class="contenedor-tabla">
+                        <table class="tabla-articulos">
+                            <thead>
+                                <tr>
+                                    <th>Artículo</th>
+                                    <th>Ubicación</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio (USD)</th>
+                                    <th>Precio (Bs)</th>
+                                    <th>Total (USD)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cuerpo-tabla-ticket">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--RESUMEN TOTALES-->
+
+                    <div class="resumen-totales">
+                        <div class="caja-totales">
+                            <div class="fila-total">
+                                <span>Total Artículos:</span>
+                                <strong id="lbl-total-articulos">0</strong>
+                            </div>
+                            <div class="fila-total">
+                                <span>Subtotal:</span>
+                                <strong id="lbl-subtotal-usd">$0.00</strong>
+                            </div>
+                            <div class="fila-total total-final">
+                                <span>TOTAL A PAGAR:</span>
+                                <strong id="lbl-total-final">0.00$ / 0.00bs</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+    
+    <!-- MENU MODAL-->
+
+    <div id="modal-producto" class="modal-fondo" style="display: none;">
+        <div class="modal-contenido">
+            <div class="cabecera-ticket">
+                <h2>Agregar Nuevo Producto</h2>
+            </div>
+
+            <div class="campo-formulario" style="margin-top: 15px;">
+                <label>Nombre del Artículo:</label>
+                <input type="text" id="input-nombre" placeholder="Ej: Doritos">
+            </div>
+
+            <div class="campo-formulario" style="margin-top: 15px;">
+                <label>Cantidad (Stock):</label>
+                <input type="number" id="input-cantidad" placeholder="Ej: 20" min="1" step="1">
+            </div>
+
+            <div class="campo-formulario" style="margin-top: 15px; margin-bottom: 20px;">
+                <label>Precio Unitario (USD):</label>
+                <input type="number" step="0.25" id="input-precio" placeholder="Ej: 1.50" min="0">
+            </div>
+
+            <div class="grupo-botones" style="justify-content: flex-end;">
+                <button id="btn-cerrar-modal" class="btn btn-peligro">Cancelar</button>
+                <button id="btn-guardar-producto" class="btn btn-exito">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/principal.js" type="module"></script>
+</body>
+
+</html> 
